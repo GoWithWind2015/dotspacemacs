@@ -32,7 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(rust
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -40,14 +40,34 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; auto-completion
      ;; better-defaults
-     lsp
+     (lsp :variables
+          lsp-lens-enable t
+          lsp-modeline-diagnostics-mode  :file)
+;;     python
+      cscope
+;;     gtags
      emacs-lisp
      ;; git
      helm
-     latex
+     (latex :variables
+            lsp-ui-doc-enable nil
+            lsp-ui-doc-show-with-mouse nil
+            lsp-ui-sideline-show-hover nil
+            lsp-eldoc-enable-hover nil)
+
+     (c-c++ :variables
+            c-c++-backend 'lsp-clangd
+            c-c++-lsp-enable-semantic-highlight 'rainbow
+            clang-format-style "chromium"
+            c-c++-enable-clang-format-on-save t
+            c-c++-default-mode-for-headers 'c-mode
+            c-c++-adopt-subprojects t
+            )
      ;; markdown
      multiple-cursors
-     org
+     ;; use org layer by excluding org-contrib package
+     (org :packages
+          (not org-contrib))  
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -534,7 +554,14 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
       ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
-
+(with-eval-after-load 'xcscope
+      (defun cscope-click-show-entry-other-window (event)
+        "this function use cscope-show-entry-other-window to show tag detail when click"
+        (interactive "e")
+        (cscope-show-entry-other-window))
+      (define-key cscope-list-entry-keymap [mouse-1] 'cscope-click-show-entry-other-window)
+      (setq cscope-display-cscope-buffer t)
+      (spacemacs/set-leader-keys "os" 'cscope-find-this-symbol))
 
 )
 
@@ -623,6 +650,7 @@ before packages are loaded."
 
 (spacemacs/set-leader-keys "oi" 'insert-clipboard-image)
 (spacemacs/set-leader-keys "ot" 'org-refresh-image)
+(spacemacs/set-leader-keys "og" 'projectile-grep)
 
 (defun tex-to-pdf ()
   (interactive)
@@ -635,6 +663,15 @@ before packages are loaded."
     ))
 
 (spacemacs/set-leader-keys "oc" 'tex-to-pdf)
+(setq projectile-project-search-path '("~/org_note/"))
+(setq projectile-dirconfig-comment-prefix "#")
+
+
+(setq lsp-latex-root-directory "/mnt/d/nutcloud_sync_file/Nutstore/org_note/tex/")
+
+;; start cscope when c-c++-mode start
+(add-hook 'c-mode-hook (function cscope-minor-mode))
+(add-hook 'c++-mode-hook (function cscope-minor-mode))
 
 )
 
@@ -651,17 +688,20 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-engine 'xetex)
+ '(TeX-engine 'xetex t)
  '(browse-url-browser-function 'browse-url-firefox)
  '(browse-url-firefox-program "firefox.exe")
  '(evil-want-Y-yank-to-eol nil)
+ '(lsp-latex-root-directory "/root/org_note/tex/")
+ '(lsp-ui-sideline-show-hover nil)
+ '(lsp-yaml-hover nil)
  '(org-file-apps
    '((auto-mode . emacs)
      ("\\.mm\\'" . default)
      ("\\.x?html?\\'" . default)
      ("\\.pdf\\'" . default)))
  '(package-selected-packages
-   '(org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink htmlize helm-org-rifle gnuplot evil-org yasnippet-snippets ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lsp-ui lsp-treemacs lsp-origami lsp-latex lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word company-reftex company-math company-auctex column-enforce-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+   '(toml-mode ron-mode racer rust-mode helm-gtags ggtags flycheck-rust counsel-gtags counsel swiper ivy cargo dap-mode bui org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink htmlize helm-org-rifle gnuplot evil-org yasnippet-snippets ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lsp-ui lsp-treemacs lsp-origami lsp-latex lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word company-reftex company-math company-auctex column-enforce-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
