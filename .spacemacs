@@ -688,10 +688,12 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-engine 'xetex t)
+ '(TeX-engine 'xetex)
  '(browse-url-browser-function 'browse-url-firefox)
  '(browse-url-firefox-program "firefox.exe")
  '(evil-want-Y-yank-to-eol nil)
+ '(lsp-enable-links nil)
+ '(lsp-enable-symbol-highlighting nil)
  '(lsp-latex-root-directory "/root/org_note/tex/")
  '(lsp-ui-sideline-show-hover nil)
  '(lsp-yaml-hover nil)
