@@ -58,7 +58,7 @@ This function should only modify configuration layer settings."
      (c-c++ :variables
             c-c++-backend 'lsp-clangd
             c-c++-lsp-enable-semantic-highlight 'rainbow
-            clang-format-style "chromium"
+            clang-format-style "webkit"
             c-c++-enable-clang-format-on-save t
             c-c++-default-mode-for-headers 'c-mode
             c-c++-adopt-subprojects t
@@ -673,7 +673,28 @@ before packages are loaded."
 (add-hook 'c-mode-hook (function cscope-minor-mode))
 (add-hook 'c++-mode-hook (function cscope-minor-mode))
 
+
+;; toggle symbol highlight at point
+(setq hhd/highlight-string-list nil)
+(defun hhd/toggle-symbol-highlight-at-point ()
+  "toggle string highlight at point"
+  (interactive)
+  (require 'hi-lock)
+  (let ((string-regexp-at-point (hi-lock-regexp-okay (find-tag-default-as-symbol-regexp))))
+    (if (member string-regexp-at-point hhd/highlight-string-list)
+        (progn
+          (unhighlight-regexp string-regexp-at-point)
+          (setq hhd/highlight-string-list (remove string-regexp-at-point hhd/highlight-string-list))
+          (message "match"))
+      (progn
+        (message "do not match")
+        (push string-regexp-at-point hhd/highlight-string-list)
+        (highlight-symbol-at-point))
+      )))
+(define-key global-map (kbd "<f8>") 'hhd/toggle-symbol-highlight-at-point)
+
 )
+
 
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -688,13 +709,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-engine 'xetex)
+ '(TeX-engine 'xetex t)
  '(browse-url-browser-function 'browse-url-firefox)
  '(browse-url-firefox-program "firefox.exe")
  '(evil-want-Y-yank-to-eol nil)
  '(lsp-enable-links nil)
  '(lsp-enable-symbol-highlighting nil)
- '(lsp-latex-root-directory "/root/org_note/tex/")
+ '(lsp-latex-root-directory "/root/org_note/tex/" t)
  '(lsp-ui-sideline-show-hover nil)
  '(lsp-yaml-hover nil)
  '(org-file-apps
