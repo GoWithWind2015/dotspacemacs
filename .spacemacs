@@ -684,10 +684,8 @@ before packages are loaded."
     (if (member string-regexp-at-point hhd/highlight-string-list)
         (progn
           (unhighlight-regexp string-regexp-at-point)
-          (setq hhd/highlight-string-list (remove string-regexp-at-point hhd/highlight-string-list))
-          (message "match"))
+          (setq hhd/highlight-string-list (remove string-regexp-at-point hhd/highlight-string-list)))
       (progn
-        (message "do not match")
         (push string-regexp-at-point hhd/highlight-string-list)
         (highlight-symbol-at-point))
       )))
