@@ -62,7 +62,7 @@ This function should only modify configuration layer settings."
             c-c++-enable-clang-format-on-save t
             c-c++-default-mode-for-headers 'c-mode
             c-c++-adopt-subprojects t
-            )
+            c-c++-enable-clang-format-on-save nil)
      ;; markdown
      multiple-cursors
      ;; use org layer by excluding org-contrib package
