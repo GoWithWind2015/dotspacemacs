@@ -691,6 +691,8 @@ before packages are loaded."
       )))
 (define-key global-map (kbd "<f8>") 'hhd/toggle-symbol-highlight-at-point)
 
+(set-default 'truncate-lines t)
+
 )
 
 
