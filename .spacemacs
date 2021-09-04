@@ -699,6 +699,9 @@ before packages are loaded."
 (require 'elisp-mode)
 ;; open task.org on startup
 ;;(find-file "/mnt/d/nutcloud_sync_file/Nutstore/org_note/task.org")
+(with-eval-after-load 'tex-mode
+  (latex-mode)
+  )
 )
 
 
