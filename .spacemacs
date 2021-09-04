@@ -695,6 +695,9 @@ before packages are loaded."
 
 ;; require helm-command to speed up M-x
 (require 'helm-command)
+(require 'elisp-mode)
+;; open task.org on startup
+(find-file "/mnt/d/nutcloud_sync_file/Nutstore/org_note/task.org")
 )
 
 
