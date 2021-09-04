@@ -693,6 +693,8 @@ before packages are loaded."
 
 (set-default 'truncate-lines t)
 
+;; require helm-command to speed up M-x
+(require 'helm-command)
 )
 
 
