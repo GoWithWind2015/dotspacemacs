@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(rust
+   '(vimscript
+     rust
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -697,7 +698,7 @@ before packages are loaded."
 (require 'helm-command)
 (require 'elisp-mode)
 ;; open task.org on startup
-(find-file "/mnt/d/nutcloud_sync_file/Nutstore/org_note/task.org")
+;;(find-file "/mnt/d/nutcloud_sync_file/Nutstore/org_note/task.org")
 )
 
 
@@ -721,7 +722,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-enable-links nil)
  '(lsp-enable-symbol-highlighting nil)
  '(lsp-latex-root-directory "/root/org_note/tex/" t)
- '(lsp-ui-sideline-show-hover nil)
+ '(lsp-ui-sideline-show-hover nil t)
  '(lsp-yaml-hover nil)
  '(org-file-apps
    '((auto-mode . emacs)
@@ -729,7 +730,7 @@ This function is called at the very end of Spacemacs initialization."
      ("\\.x?html?\\'" . default)
      ("\\.pdf\\'" . default)))
  '(package-selected-packages
-   '(toml-mode ron-mode racer rust-mode helm-gtags ggtags flycheck-rust counsel-gtags counsel swiper ivy cargo dap-mode bui org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink htmlize helm-org-rifle gnuplot evil-org yasnippet-snippets ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lsp-ui lsp-treemacs lsp-origami lsp-latex lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word company-reftex company-math company-auctex column-enforce-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+   '(vimrc-mode dactyl-mode toml-mode ron-mode racer rust-mode helm-gtags ggtags flycheck-rust counsel-gtags counsel swiper ivy cargo dap-mode bui org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink htmlize helm-org-rifle gnuplot evil-org yasnippet-snippets ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lsp-ui lsp-treemacs lsp-origami lsp-latex lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word company-reftex company-math company-auctex column-enforce-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
