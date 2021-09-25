@@ -664,6 +664,17 @@ before packages are loaded."
     ))
 
 (spacemacs/set-leader-keys "oc" 'tex-to-pdf)
+
+(defun compile-and-run-current-cpp-file ()
+  (interactive)
+  "convert dvi to pdf"
+  (let ((compile-and-run-cpp-command (concat "g++ " buffer-file-name "&& ./a.out"))
+        )
+    (save-buffer buffer-file-name)
+    (shell-command compile-and-run-cpp-command)
+    ))
+(spacemacs/set-leader-keys "op" 'compile-and-run-current-cpp-file)
+
 (setq projectile-project-search-path '("~/org_note/"))
 (setq projectile-dirconfig-comment-prefix "#")
 
@@ -727,6 +738,7 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-latex-root-directory "/root/org_note/tex/" t)
  '(lsp-ui-sideline-show-hover nil t)
  '(lsp-yaml-hover nil)
+ '(org-agenda-files '("/mnt/d/nutcloud_sync_file/Nutstore/org_note/task.org"))
  '(org-file-apps
    '((auto-mode . emacs)
      ("\\.mm\\'" . default)
