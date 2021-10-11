@@ -48,6 +48,8 @@ This function should only modify configuration layer settings."
       cscope
 ;;     gtags
      emacs-lisp
+     (python :variables
+             python-formatter 'yapf)
      ;; git
      helm
      (latex :variables
@@ -665,7 +667,7 @@ before packages are loaded."
 
 (spacemacs/set-leader-keys "oc" 'tex-to-pdf)
 
-(defun compile-and-run-current-cpp-file ()
+(defun hhd/compile-and-run-current-cpp-file ()
   (interactive)
   "convert dvi to pdf"
   (let ((compile-and-run-cpp-command (concat "g++ " buffer-file-name "&& ./a.out"))
@@ -673,7 +675,6 @@ before packages are loaded."
     (save-buffer buffer-file-name)
     (shell-command compile-and-run-cpp-command)
     ))
-(spacemacs/set-leader-keys "op" 'compile-and-run-current-cpp-file)
 
 (setq projectile-project-search-path '("~/org_note/"))
 (setq projectile-dirconfig-comment-prefix "#")
@@ -713,6 +714,16 @@ before packages are loaded."
 (with-eval-after-load 'tex-mode
   (latex-mode)
   )
+
+
+(defun hhd/compile-and-run-current-file ()
+  (interactive)
+  (cond ((eq major-mode 'python-mode)  (save-buffer buffer-file-name)  (spacemacs/python-execute-file nil)            )
+        ((eq major-mode 'c++-mode) (hhd/compile-and-run-current-cpp-file))
+         )
+  )
+(spacemacs/set-leader-keys "op" 'hhd/compile-and-run-current-file)
+
 )
 
 
@@ -729,8 +740,8 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-engine 'xetex t)
- '(browse-url-browser-function 'browse-url-firefox)
+ '(TeX-engine (quote xetex) t)
+ '(browse-url-browser-function (quote browse-url-firefox))
  '(browse-url-firefox-program "firefox.exe")
  '(evil-want-Y-yank-to-eol nil)
  '(lsp-enable-links nil)
@@ -738,14 +749,18 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-latex-root-directory "/root/org_note/tex/" t)
  '(lsp-ui-sideline-show-hover nil t)
  '(lsp-yaml-hover nil)
- '(org-agenda-files '("/mnt/d/nutcloud_sync_file/Nutstore/org_note/task.org"))
+ '(org-agenda-files
+   (quote
+    ("~/nutcloud/org_note/task.org" "/mnt/d/nutcloud_sync_file/Nutstore/org_note/task.org")))
  '(org-file-apps
-   '((auto-mode . emacs)
+   (quote
+    ((auto-mode . emacs)
      ("\\.mm\\'" . default)
      ("\\.x?html?\\'" . default)
-     ("\\.pdf\\'" . default)))
+     ("\\.pdf\\'" . default))))
  '(package-selected-packages
-   '(vimrc-mode dactyl-mode toml-mode ron-mode racer rust-mode helm-gtags ggtags flycheck-rust counsel-gtags counsel swiper ivy cargo dap-mode bui org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink htmlize helm-org-rifle gnuplot evil-org yasnippet-snippets ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lsp-ui lsp-treemacs lsp-origami lsp-latex lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word company-reftex company-math company-auctex column-enforce-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+   (quote
+    (yapfify sphinx-doc pytest pyenv-mode pydoc py-isort poetry transient pippel pipenv pyvenv pip-requirements nose lsp-python-ms lsp-pyright live-py-mode importmagic epc ctable concurrent helm-pydoc cython-mode company-anaconda blacken anaconda-mode pythonic vimrc-mode dactyl-mode toml-mode ron-mode racer rust-mode helm-gtags ggtags flycheck-rust counsel-gtags counsel swiper ivy cargo dap-mode bui org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink htmlize helm-org-rifle gnuplot evil-org yasnippet-snippets ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lsp-ui lsp-treemacs lsp-origami lsp-latex lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish define-word company-reftex company-math company-auctex column-enforce-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
