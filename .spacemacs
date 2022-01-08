@@ -47,6 +47,9 @@ This function should only modify configuration layer settings."
 ;;     python
       cscope
 ;;     gtags
+      (cmake :variables
+             cmake-backend 'lsp
+             cmake-enable-cmake-ide-support t)
      emacs-lisp
      (python :variables
              python-formatter 'yapf)
@@ -746,9 +749,9 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(lsp-enable-links nil)
  '(lsp-enable-symbol-highlighting nil)
- '(lsp-latex-root-directory "/root/org_note/tex/" t)
- '(lsp-ui-sideline-show-hover nil t)
- '(lsp-yaml-hover nil)
+ '(lsp-latex-root-directory "/root/org_note/tex/")
+ '(lsp-ui-sideline-show-hover t)
+ '(lsp-yaml-hover t)
  '(org-agenda-files
    '("/mnt/d/nutclound_data_file/Nutstore/org_note/task.org" "/home/hhd/nutcloud/org_note/task.org" "/mnt/d/nutcloud_sync_file/Nutstore/org_note/task.org"))
  '(org-file-apps
