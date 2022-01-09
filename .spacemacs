@@ -746,6 +746,7 @@ This function is called at the very end of Spacemacs initialization."
  '(TeX-engine 'xetex t)
  '(browse-url-browser-function 'browse-url-firefox)
  '(browse-url-firefox-program "firefox.exe")
+ '(evil-escape-delay 0.5)
  '(evil-want-Y-yank-to-eol nil)
  '(lsp-enable-links nil)
  '(lsp-enable-symbol-highlighting nil)
