@@ -52,7 +52,9 @@ This function should only modify configuration layer settings."
              cmake-enable-cmake-ide-support t)
      emacs-lisp
      (python :variables
-             python-formatter 'yapf)
+             python-formatter 'yapf
+             python-backend 'lsp
+             python-lsp-server 'pyright)
      ;; git
      helm
      (latex :variables
@@ -751,7 +753,8 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-enable-links nil)
  '(lsp-enable-symbol-highlighting nil)
  '(lsp-latex-root-directory "/root/org_note/tex/")
- '(lsp-ui-sideline-show-hover t)
+ '(lsp-pyright-python-executable-cmd "python3")
+ '(lsp-ui-sideline-show-hover t t)
  '(lsp-yaml-hover t)
  '(org-agenda-files
    '("/mnt/d/nutclound_data_file/Nutstore/org_note/task.org" "/home/hhd/nutcloud/org_note/task.org" "/mnt/d/nutcloud_sync_file/Nutstore/org_note/task.org"))
