@@ -56,6 +56,7 @@ This function should only modify configuration layer settings."
              python-backend 'lsp
              python-lsp-server 'pyright)
      ;; git
+     java
      helm
      (latex :variables
             lsp-ui-doc-enable nil
@@ -681,6 +682,15 @@ before packages are loaded."
     (shell-command compile-and-run-cpp-command)
     ))
 
+(defun hhd/compile-and-run-current-java-file ()
+  (interactive)
+  (let ((compile-and-run-java-command (concat "javac " buffer-file-name "&& java /a.out"))
+        )
+    (save-buffer buffer-file-name)
+    (helm-M-x-execute-command 'dap-java-debug)
+    ))
+
+
 (setq projectile-project-search-path '("~/org_note/"))
 (setq projectile-dirconfig-comment-prefix "#")
 
@@ -725,9 +735,11 @@ before packages are loaded."
   (interactive)
   (cond ((eq major-mode 'python-mode)  (save-buffer buffer-file-name)  (spacemacs/python-execute-file nil)            )
         ((eq major-mode 'c++-mode) (hhd/compile-and-run-current-cpp-file))
+        ((eq major-mode 'java-mode) (hhd/compile-and-run-current-java-file))
          )
   )
 (spacemacs/set-leader-keys "op" 'hhd/compile-and-run-current-file)
+(seq lsp-java-workspace-dir "/home/hhd/writing/emacs_workspace")
 
 )
 
