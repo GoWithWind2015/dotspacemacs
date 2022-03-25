@@ -739,7 +739,6 @@ before packages are loaded."
          )
   )
 (spacemacs/set-leader-keys "op" 'hhd/compile-and-run-current-file)
-(seq lsp-java-workspace-dir "/home/hhd/writing/emacs_workspace")
 
 )
 
