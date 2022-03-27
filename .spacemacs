@@ -57,7 +57,7 @@ This function should only modify configuration layer settings."
              python-lsp-server 'pyright)
      ;; git
      (java  :variables
-            lsp-ui-doc-max-height 30
+            lsp-ui-doc-max-height 100
             lsp-ui-sideline-show-diagnostics nil
             lsp-ui-sideline-show-hover nil
                                 )
