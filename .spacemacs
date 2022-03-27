@@ -56,7 +56,11 @@ This function should only modify configuration layer settings."
              python-backend 'lsp
              python-lsp-server 'pyright)
      ;; git
-     java
+     (java  :variables
+            lsp-ui-doc-max-height 30
+            lsp-ui-sideline-show-diagnostics nil
+            lsp-ui-sideline-show-hover nil
+                                )
      helm
      (latex :variables
             lsp-ui-doc-enable nil
@@ -271,7 +275,7 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 12.0
+                               :size 13.0
                                :weight normal
                                :width normal)
 
@@ -765,7 +769,6 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-enable-symbol-highlighting nil)
  '(lsp-latex-root-directory "/root/org_note/tex/")
  '(lsp-pyright-python-executable-cmd "python3")
- '(lsp-ui-sideline-show-hover t t)
  '(lsp-yaml-hover t)
  '(org-agenda-files
    '("/mnt/d/nutclound_data_file/Nutstore/org_note/task.org" "/home/hhd/nutcloud/org_note/task.org" "/mnt/d/nutcloud_sync_file/Nutstore/org_note/task.org"))
