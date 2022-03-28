@@ -60,6 +60,7 @@ This function should only modify configuration layer settings."
             lsp-ui-doc-max-height 100
             lsp-ui-sideline-show-diagnostics nil
             lsp-ui-sideline-show-hover nil
+            dotspacemacs-show-trailing-whitespace nil
                                 )
      helm
      (latex :variables
@@ -75,7 +76,9 @@ This function should only modify configuration layer settings."
             c-c++-enable-clang-format-on-save t
             c-c++-default-mode-for-headers 'c-mode
             c-c++-adopt-subprojects t
-            c-c++-enable-clang-format-on-save nil)
+            c-c++-enable-clang-format-on-save nil
+            dotspacemacs-show-trailing-whitespace nil
+            )
      ;; markdown
      multiple-cursors
      ;; use org layer by excluding org-contrib package
