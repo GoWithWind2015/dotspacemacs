@@ -688,10 +688,12 @@ before packages are loaded."
 
 (defun hhd/compile-and-run-current-java-file ()
   (interactive)
-  (let ((compile-and-run-java-command (concat "javac " buffer-file-name "&& java /a.out"))
+  (let ((compile-and-run-java-command (concat "javac " buffer-file-name "&& java " (file-name-base buffer-file-name)))
         )
     (save-buffer buffer-file-name)
-    (helm-M-x-execute-command 'dap-java-debug)
+    "(message compile-and-run-java-command)"
+    (shell-command compile-and-run-java-command)
+    "(helm-M-x-execute-command 'dap-java-debug)"
     ))
 
 
