@@ -688,13 +688,16 @@ before packages are loaded."
 
 (defun hhd/compile-and-run-current-java-file ()
   (interactive)
+  "return to original place after executing the compile and run command"
+  (save-excursion
   (let ((compile-and-run-java-command (concat "javac " buffer-file-name "&& java " (file-name-base buffer-file-name)))
         )
     (save-buffer buffer-file-name)
     "(message compile-and-run-java-command)"
     (shell-command compile-and-run-java-command)
+    (previous-window-any-frame)
     "(helm-M-x-execute-command 'dap-java-debug)"
-    ))
+    )))
 
 
 (setq projectile-project-search-path '("~/org_note/"))
