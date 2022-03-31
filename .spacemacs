@@ -695,7 +695,9 @@ before packages are loaded."
   " save-excursion"
   (let ((compile-and-run-java-command (concat "javac " buffer-file-name "&& java " (file-name-base buffer-file-name)))
         )
-    (save-buffer buffer-file-name)
+    "(save-buffer buffer-file-name)"
+    " save all buffers by default"
+    (save-some-buffers t)
     "(message compile-and-run-java-command)"
     "(shell-command compile-and-run-java-command)"
    " (previous-window-any-frame)"
