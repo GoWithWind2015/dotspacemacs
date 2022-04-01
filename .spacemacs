@@ -754,6 +754,9 @@ before packages are loaded."
   )
 (spacemacs/set-leader-keys "op" 'hhd/compile-and-run-current-file)
 
+;;  distinguish C-i and tab in the GUI version of Emacs.
+(setq-default dotspacemacs-distinguish-gui-tab t)
+
 )
 
 
