@@ -33,7 +33,18 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(yaml
-     javascript
+     (javascript :variables
+                 js2-mode-show-strict-warnings nil
+                 javascript-import-tool 'import-js 
+                 javascript-backend 'lsp
+                 javascript-fmt-tool 'web-beautify
+                 javascript-fmt-on-save nil
+                 js2-basic-offset 4
+                 js-indent-level 4
+                 javascript-repl 'nodejs
+
+
+                 )
      vimscript
      rust
      ;; ----------------------------------------------------------------
@@ -46,6 +57,11 @@ This function should only modify configuration layer settings."
      (lsp :variables
           lsp-lens-enable t
           lsp-modeline-diagnostics-mode  :file)
+     (html :variables
+           css-enable-lsp t
+           html-enable-lsp t
+           web-fmt-tool 'web-beautify)
+      
 ;;     python
       cscope
 ;;     gtags
@@ -621,9 +637,11 @@ before packages are loaded."
               '((latex :variables latex-build-engine 'xetex)))
 (setq TeX-save-query nil)
 
+"only set font in graphic mode"
+(if (display-graphic-p)
 (dolist (charset '(kana han cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font) charset
-                    (font-spec :family "FZLingFeiJingXiaoKaiS" :size 28)))
+                    (font-spec :family "FZLingFeiJingXiaoKaiS" :size 28))))
 
 (setq org-image-actual-width '(500))
 ;;(setq org-image-actual-width nil)
