@@ -45,6 +45,10 @@ This function should only modify configuration layer settings."
 
 
                  )
+     (vue :variables
+          vue-backend 'lsp
+          ;; node-add-modules-path t
+          )
      vimscript
      rust
      ;; ----------------------------------------------------------------
