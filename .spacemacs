@@ -793,6 +793,17 @@ before packages are loaded."
 (setq-default dotspacemacs-distinguish-gui-tab t)
 (setq  treemacs-use-all-the-icons-theme t)
 
+;; 设置web-mode默认缩进
+(setq-default
+ ;; web-mode
+ web-mode-markup-indent-offset 2
+ web-mode-css-indent-offset 2
+ web-mode-code-indent-offset 2
+  web-mode-attr-indent-offset 2)
+
+;; 设置emacs的undo文件默认存储位置
+(setq undo-tree-auto-save-history t)
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 )
 
