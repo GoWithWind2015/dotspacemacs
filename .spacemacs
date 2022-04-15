@@ -74,9 +74,9 @@ This function should only modify configuration layer settings."
              cmake-enable-cmake-ide-support t)
      emacs-lisp
      (python :variables
-             python-formatter 'yapf
+             ;; python-formatter 'yapf
              python-backend 'lsp
-             python-lsp-server 'pyright)
+             python-lsp-server 'pylsp)
      ;; git
      (java  :variables
             lsp-ui-doc-max-height 100
