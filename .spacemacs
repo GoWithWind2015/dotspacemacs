@@ -36,6 +36,9 @@ This function should only modify configuration layer settings."
     (dap :variables
           dap-enable-mouse-support t
           )
+    (ipython-notebook :variables
+                      ein-backend 'jupyter
+                      )
      (javascript :variables
                  js2-mode-show-strict-warnings nil
                  javascript-import-tool 'import-js 
