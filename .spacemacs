@@ -82,7 +82,9 @@ This function should only modify configuration layer settings."
      (python :variables
              ;; python-formatter 'yapf
              python-backend 'lsp
-             python-lsp-server 'pylsp)
+             python-lsp-server 'pylsp
+             python-save-before-test t
+             )
      ;; git
      (java  :variables
             lsp-ui-doc-max-height 100
