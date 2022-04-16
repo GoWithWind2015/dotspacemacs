@@ -33,6 +33,9 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(yaml
+    (dap :variables
+          dap-enable-mouse-support t
+          )
      (javascript :variables
                  js2-mode-show-strict-warnings nil
                  javascript-import-tool 'import-js 
