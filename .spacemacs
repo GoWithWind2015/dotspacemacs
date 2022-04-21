@@ -57,6 +57,7 @@ This function should only modify configuration layer settings."
           )
      vimscript
      rust
+     eaf
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -708,7 +709,8 @@ before packages are loaded."
 
 (spacemacs/set-leader-keys "oi" 'insert-clipboard-image)
 (spacemacs/set-leader-keys "ot" 'org-refresh-image)
-(spacemacs/set-leader-keys "og" 'projectile-grep)
+;; (spacemacs/set-leader-keys "og" 'projectile-grep)
+(spacemacs/set-leader-keys "og" 'helm-projectile-grep)
 
 (defun tex-to-pdf ()
   (interactive)
@@ -812,6 +814,10 @@ before packages are loaded."
 ;; 设置emacs的undo文件默认存储位置
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+
+
+;; 设置lsp-java-jdt以支持java8
+(setq lsp-java-jdt-download-url  "https://download.eclipse.org/jdtls/milestones/0.57.0/jdt-language-server-0.57.0-202006172108.tar.gz")
 
 )
 
