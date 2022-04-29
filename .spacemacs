@@ -733,6 +733,15 @@ before packages are loaded."
     (shell-command compile-and-run-cpp-command)
     ))
 
+(defun hhd/compile-and-run-current-node-file ()
+  (interactive)
+  (let ((compile-and-run-node-command (concat "node " buffer-file-name))
+        )
+    (save-buffer buffer-file-name)
+    (shell-command compile-and-run-node-command)
+    ))
+
+
 (defun hhd/compile-and-run-current-java-file ()
   (interactive)
   "return to original place after executing the compile and run command"
@@ -794,6 +803,7 @@ before packages are loaded."
   (cond ((eq major-mode 'python-mode)  (save-buffer buffer-file-name)  (spacemacs/python-execute-file nil)            )
         ((eq major-mode 'c++-mode) (hhd/compile-and-run-current-cpp-file))
         ((eq major-mode 'java-mode) (hhd/compile-and-run-current-java-file))
+        ((eq major-mode 'js2-mode) (hhd/compile-and-run-current-node-file))
          )
   )
 (spacemacs/set-leader-keys "op" 'hhd/compile-and-run-current-file)
