@@ -126,7 +126,9 @@ This function should only modify configuration layer settings."
             c-c++-enable-clang-format-on-save nil
             dotspacemacs-show-trailing-whitespace nil
             )
-     ;; markdown
+     (markdown :variables
+               markdown-live-preview-engine 'vmd
+               )
      multiple-cursors
      ;; use org layer by excluding org-contrib package
      (org :packages
