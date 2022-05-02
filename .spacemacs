@@ -729,6 +729,8 @@ before packages are loaded."
 (spacemacs/set-leader-keys "ot" 'org-refresh-image)
 ;; (spacemacs/set-leader-keys "og" 'projectile-grep)
 (spacemacs/set-leader-keys "og" 'helm-projectile-grep)
+;; 使用helm-grep-do-git-grip 以在搜索的过程中能够忽略.gitignore中已经忽略的文件
+(spacemacs/set-leader-keys "og" 'helm-grep-do-git-grep)
 
 (defun tex-to-pdf ()
   (interactive)
