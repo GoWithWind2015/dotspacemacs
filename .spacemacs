@@ -852,6 +852,8 @@ before packages are loaded."
 ;; 设置lsp-java-jdt以支持java8
 (setq lsp-java-jdt-download-url  "https://download.eclipse.org/jdtls/milestones/0.57.0/jdt-language-server-0.57.0-202006172108.tar.gz")
 
+(lsp-register-custom-settings '(("javascript.format.semicolons" "insert" t)))
+
 )
 
 
